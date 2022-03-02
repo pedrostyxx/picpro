@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@1,300&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" type="text/css" href="./assets/css/reset.css" />
@@ -31,28 +31,63 @@
       <section class="secaoDetalhesConta">
         <div class="container">
           <div class="secaoDetalhesConta__sobreUsuario">
-            <img src="./assets/img/usuario.png" alt="Ícone do usuário" />
-            <p>Olá, <strong>pedrostyxx</strong></p>
+            <div class="secaoDetalhesConta__sobreUsuario--nome">
+              <img src="./assets/img/usuario.png" alt="Ícone do usuário" />
+              <p>Olá, <strong>@mariaporcina</strong></p>
+            </div>
+            <div class="secaoDetalhesConta__sobreUsuario--icones">
+              <img src="./assets/img/presente.png" alt="Icone Presente" />
+              <img src="./assets/img/chat.png" alt="Icone Chat" />
+            </div>
           </div>
+
           <div class="secaoDetalhesConta__sobreSaldo">
-            <p>Saldo PicPay <strong>R$ 98,50</strong></p>
-            <button>Extrato</button>
+            <div>
+              <p>Saldo PicPay</p>
+              <div class="secaoDetalhesConta__sobreSaldo--valor">
+                <p>R$ 10.000</p>
+                <img src="./assets/img/visualizar.png" alt="Icone Visualizar" />
+              </div>
+            </div>
+            <button id="btnExtrato">Extrato</button>
           </div>
+
           <ul class="secaoDetalhesConta__opcoesTransacoes">
-            <li class="secaoDetalhesConta__itemTransacao">
-              <img src="./assets/img/qrcode.png" alt="Ícone QR Code" />
+            <li
+              class="secaoDetalhesConta__itemTransacao secaoDetalhesConta__itemTransacao--qrCode"
+              id="1"
+            >
+              <figure>
+                <img src="./assets/img/qrcode.png" alt="Ícone QR Code" />
+              </figure>
               <p>QR Code</p>
             </li>
-            <li class="secaoDetalhesConta__itemTransacao">
-              <img src="./assets/img/pix.png" alt="Ícone Pix" />
+            <li
+              class="secaoDetalhesConta__itemTransacao secaoDetalhesConta__itemTransacao--pix"
+              id="2"
+            >
+              <figure>
+                <img src="./assets/img/pix.png" alt="Ícone Pix" />
+              </figure>
+
               <p>Pix</p>
             </li>
-            <li class="secaoDetalhesConta__itemTransacao">
-              <img src="./assets/img/codigo.png" alt="Ícone boleto" />
+            <li
+              class="secaoDetalhesConta__itemTransacao secaoDetalhesConta__itemTransacao--boleto"
+              id="3"
+            >
+              <figure>
+                <img src="./assets/img/codigo.png" alt="Ícone boleto" />
+              </figure>
               <p>Pagar Boleto</p>
             </li>
-            <li class="secaoDetalhesConta__itemTransacao">
-              <img src="./assets/img/cobrar-icon.png" alt="Ícone cobrar" />
+            <li
+              class="secaoDetalhesConta__itemTransacao secaoDetalhesConta__itemTransacao--cobrar"
+              id="4"
+            >
+              <figure>
+                <img src="./assets/img/cobrar-icon.png" alt="Ícone cobrar" />
+              </figure>
               <p>Cobrar</p>
             </li>
           </ul>
@@ -63,21 +98,21 @@
         <!-- div geral -->
         <div class="container">
           <!-- div selecione forma de agamento -->
-          <div class="secaoTransacao__avisoSelecao">
+          <div class="secaoTransacao__avisoSelecao mostrar">
             <p>Selecione a forma de pagamento</p>
             <img src="./assets/img/banner.png" alt="Banner do picpay" />
           </div>
 
           <!-- div do qrcode -->
-          <div class="secaoTransacao__qrCode">
+          <div data-id="1" class="secaoTransacao__qrCode">
             <img src="./assets/img/qrcode-imagem.png" alt="Imagem QR Code" />
-            <p>@pedrostyxx</p>
+            <p>@mariaporcina</p>
             <button>Cobre um amigo</button>
             <a href="">Compartilhar meu código</a>
           </div>
 
           <!-- div do pix -->
-          <div class="secaoTransacao__pix">
+          <div data-id="2" class="secaoTransacao__pix">
             <img src="./assets/img/pix-logo.png" alt="Logo pix" />
             <div class="secaoTransacao__boxOpcao">
               <img src="./assets/img/pix1.png" alt="Ícone opção pix" />
@@ -90,7 +125,7 @@
           </div>
 
           <!-- div do boleto -->
-          <div class="secaoTransacao__boleto">
+          <div data-id="3" class="secaoTransacao__boleto">
             <img src="./assets/img/boleto.png" alt="Imagem boleto" />
             <h2>Pagar com código de barras</h2>
             <p>
@@ -101,7 +136,7 @@
           </div>
 
           <!-- div de cobrar -->
-          <div class="secaoTransacao__cobrar">
+          <div data-id="4" class="secaoTransacao__cobrar">
             <img src="./assets/img/cobrar.png" alt="Ícone cobrar" />
             <h2>Cobrar</h2>
             <p>Divida a conta com os amigos de forma fácil!</p>
@@ -160,42 +195,7 @@
         </div>
       </footer>
     </main>
-  <!-- Code injected by live-server -->
-<script type="text/javascript">
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script></body>
+
+    <script src="./assets/js/script.js"></script>
+  </body>
 </html>
